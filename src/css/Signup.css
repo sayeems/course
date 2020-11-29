@@ -1,0 +1,45 @@
+.signupWrapper {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    width: 400px;
+    padding: 0 15px;
+}
+.form-content {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+}
+.form-content > label{
+    color: #606060;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.form-content > input{
+    border: 1px solid #606060;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 8px 6px;
+}
+.form-content > input:focus{
+    border: 1px solid #606060;
+}
+.btn{
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 12px;
+}
+.btn:active, .btn:focus{
+    outline: none;
+}
+.btn.btn-blue{
+    background: rgb(106, 106, 255);
+    color: white;
+}
