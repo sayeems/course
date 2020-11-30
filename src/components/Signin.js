@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react'
-import '../css/Signup.css'
+import '../css/Signin.css'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import study from '../images/study.svg'
+import user from '../images/user.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faGoogle, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 function Signin() {
     //refs
@@ -29,29 +34,48 @@ function Signin() {
 
     }
     return (
-        <div className="signupWrapper">
-            <div className="box">
-                <div className="box-header">
-                    <h2 className="textCenter">Sign In</h2>
+        <div className="signinPage">
+            <div className="pannelContainer">
+                <div className="leftPannel">
+                    <div className="leftContent">
+                        <h3>Dont have an account?</h3>
+                        <p>You can create one in no time. So what are you waiting for? click the button below and get your account, it's free!</p>
+                        <Link className="btn transparent" to="/signup">Sign Up</Link>
+                    </div>
+                    <img className="image" src={study} alt="study" />
                 </div>
-                <div className="box-body">
+            </div>
+            <div className="formContainer">
+                <div className="signinSignup">
                     {error && <div className="errorBlock textCenter">{error}</div>}
-                    <form className="form signupForm formVertical" onSubmit={handleSubmit}>
-                        <div className="form-content">
-                            <label htmlFor="email" id="email">Email</label>
-                            <input type="email" required ref={emailRef} />
+                    <form className="signinForm" onSubmit={handleSubmit}>
+                        <img className="formUser" src={user} alt="user" />
+                        <h2 className="title">Sign In</h2>
+                        <div className="inputField">
+                            <FontAwesomeIcon icon={faUser} />
+                            <input type="email" required ref={emailRef} placeholder="Email address" />
                         </div>
-                        <div className="form-content">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id="password" required ref={passwordRef} />
+                        <div className="inputField">
+                            <FontAwesomeIcon icon={faLock} />
+                            <input type="password" id="password" required ref={passwordRef} placeholder="Password" />
                         </div>
-                        <div className="form-content">
-                            <button disabled={loading} className="btn btn-blue w-100" type="submit">Sign In</button>
+                        <button disabled={loading} className="btn solid" type="submit">Sign In</button>
+                        <p className="social-text">Sign in with social media accounts</p>
+                        <div className="socialMediaIcons">
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faFacebookF} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faGoogle} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faTwitter} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faGithub} />
+                            </a>
                         </div>
                     </form>
-                </div>
-                <div className="box-footer textCenter">
-                    Need an account? <Link to="/signup">Sign Up</Link>
                 </div>
             </div>
         </div>
