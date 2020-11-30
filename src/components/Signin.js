@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import '../css/Signin.css'
+import React, { useRef, useState, useEffect } from 'react'
+import '../css/Auth.css'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import study from '../images/study.svg'
@@ -9,6 +9,14 @@ import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faGoogle, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 function Signin() {
+    //testanimation
+    const [pageTransition, setPageTransition] = useState(false);
+    useEffect(() => {
+        setPageTransition(true)
+        return () => {
+            setPageTransition(false)
+        }
+    }, [])
     //refs
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -34,7 +42,7 @@ function Signin() {
 
     }
     return (
-        <div className="signinPage">
+        <div className={pageTransition ? 'authPage animateAuth' : 'authPage'}>
             <div className="pannelContainer">
                 <div className="leftPannel">
                     <div className="leftContent">
@@ -48,7 +56,7 @@ function Signin() {
             <div className="formContainer">
                 <div className="signinSignup">
                     {error && <div className="errorBlock textCenter">{error}</div>}
-                    <form className="signinForm" onSubmit={handleSubmit}>
+                    <form className="authForm" onSubmit={handleSubmit}>
                         <img className="formUser" src={user} alt="user" />
                         <h2 className="title">Sign In</h2>
                         <div className="inputField">

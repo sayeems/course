@@ -1,17 +1,16 @@
-.signinPage{
+.authPage{
     position: relative;
     background-color: #fff;
     min-height: 100vh;
     overflow: hidden;
 }
-.signinPage::before{
+.authPage::before{
     content: "";
     position: absolute;
     height: 2000px;
     width: 2000px;
     top: -10%;
     right: 48%;
-    transform: translateY(-50%);
     background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
     transition: 1.8s ease-in-out;
     border-radius: 50%;
@@ -38,6 +37,7 @@
     z-index: 6;
     pointer-events: all;
     padding: 3rem 17% 2rem 12%;
+    transition: transform 1s ease-out;
 }
 .leftContent{
     color: #fff;
@@ -62,8 +62,11 @@
     font-weight: 600;
     font-size: 0.8rem;
 }
-a.btn.transparent{
+a.btn.transparent {
     display: inline-block;
+    text-decoration: none;
+    font-size: .8rem;
+    padding: 12px;
 }
 .formContainer{
     position: absolute;
@@ -76,14 +79,14 @@ a.btn.transparent{
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
-    left: 75%;
+    left: 90%;
     width: 50%;
     transition: 1s 0.7s ease-in-out;
     display: grid;
     grid-template-columns: 1fr;
     z-index: 5;
 }
-form.signinForm{
+form.authForm{
     z-index: 2;
 }
 form{
@@ -183,4 +186,53 @@ form{
 }
 .formUser{
     max-width: 100px;
-}    
+}
+/* animate */
+.leftPannel{
+    transform: translate(-100%);
+    transition: transform 1s ease-out;
+}
+.animateAuth .leftPannel{
+    transform: translate(0);
+    transition-delay: .5s;
+}
+.animateAuth .signinSignup{
+    left: 75%;
+}
+.authPage::before{
+    transform: translate(100%,-50%);
+}
+.animateAuth.authPage::before{
+    transform: translate(0,-50%);
+}
+
+.signUp.authPage::before {
+    transform: translate(0,-50%);
+}
+.signUp .pannelContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.signUp .leftPannel {
+    display: flex;
+    align-content: space-around;
+    height: 100vh;
+    padding: 1.5rem 10% 2rem 19%;
+    transform: translate(100%,0);
+    width: 55%;
+    right: 0;
+}
+.signUp .signinSignup{
+    left: 0;
+}
+.animateAuth.signUp.authPage::before{
+    transform: translate(100%,-50%);
+}
+.animateAuth.signUp .leftPannel {
+    transform: translate(8%,0);
+}
+.animateAuth.signUp .signinSignup{
+    left: 25%;
+}
+

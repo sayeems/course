@@ -1,9 +1,21 @@
-import React, { useRef, useState } from 'react'
-import '../css/Signup.css'
+import React, { useRef, useState, useEffect } from 'react'
+import '../css/Auth.css'
 import { Link, useHistory } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
+import reading from '../images/reading.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faGoogle, faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 function Signup() {
+    //testanimation
+    const [pageTransition, setPageTransition] = useState(false);
+    useEffect(() => {
+        setPageTransition(true)
+        return () => {
+            setPageTransition(false)
+        }
+    }, [])
     //refs
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -33,33 +45,51 @@ function Signup() {
 
     }
     return (
-        <div className="signupWrapper">
-            <div className="box">
-                <div className="box-header">
-                    <h2 className="textCenter">Sign Up</h2>
+        <div className={pageTransition ? 'authPage signUp animateAuth' : 'authPage signUp'}>
+            <div className="pannelContainer">
+                <div className="leftPannel">
+                    <div className="leftContent">
+                        <h3>Already have an account?</h3>
+                        <p>Welcome! you are probably in the wrong place right now. You should be in the sign in page. Just hit the button below!</p>
+                        <Link className="btn transparent" to="/signin">Sign In</Link>
+                    </div>
+                    <img className="image" src={reading} alt="reading" />
                 </div>
-                <div className="box-body">
+            </div>
+            <div className="formContainer">
+                <div className="signinSignup">
                     {error && <div className="errorBlock textCenter">{error}</div>}
                     <form className="form signupForm formVertical" onSubmit={handleSubmit}>
-                        <div className="form-content">
-                            <label htmlFor="email" id="email">Email</label>
-                            <input type="email" required ref={emailRef} />
+                        <h2 className="title">Sign Up</h2>
+                        <div className="inputField">
+                            <FontAwesomeIcon icon={faUser} />
+                            <input type="email" required ref={emailRef} placeholder="Email address" />
                         </div>
-                        <div className="form-content">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id="password" required ref={passwordRef} />
+                        <div className="inputField">
+                            <FontAwesomeIcon icon={faLock} />
+                            <input type="password" required ref={passwordRef} placeholder="Password" />
                         </div>
-                        <div className="form-content">
-                            <label htmlFor="confirm">Confirm Password</label>
-                            <input type="password" id="confirm" required ref={confirmRef} />
+                        <div className="inputField">
+                            <FontAwesomeIcon icon={faLock} />
+                            <input type="password" required ref={confirmRef} placeholder="Confirm Password" />
                         </div>
-                        <div className="form-content">
-                            <button disabled={loading} className="btn btn-blue w-100" type="submit">Sign Up</button>
+                        <button disabled={loading} className="btn solid" type="submit">Sign Up</button>
+                        <p className="social-text">Sign Up is easy with social media</p>
+                        <div className="socialMediaIcons">
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faFacebookF} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faGoogle} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faTwitter} />
+                            </a>
+                            <a className="socialIcon" href="#">
+                                <FontAwesomeIcon icon={faGithub} />
+                            </a>
                         </div>
                     </form>
-                </div>
-                <div className="box-footer textCenter">
-                    Already have an account? <Link to="/signin">Sign In</Link>
                 </div>
             </div>
         </div>
