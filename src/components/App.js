@@ -6,6 +6,7 @@ import Dashboard from './Dashboard'
 import Signin from './Signin'
 import PrivateRoute from './PrivateRoute'
 import PrivateAuthPage from './PrivateAuthPage'
+import SkeletonArticle from '../skeleton/SkeletonArticle'
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <AuthProvider>
           <div className="App">
+            <SkeletonArticle theme="light" />
             <PrivateRoute exact path="/" component={Dashboard} />
             <PrivateAuthPage path="/signup" component={Signup} />
             <PrivateAuthPage path="/signin" component={Signin} />

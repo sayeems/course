@@ -235,4 +235,27 @@ form{
 .animateAuth.signUp .signinSignup{
     left: 25%;
 }
+.notification{
+    position: fixed;
+    top: -300px;
+    right: 10px;
+    width: 300px;
+    padding: 15px 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    z-index: 10;
+    height: 50px;
+    color: #ffffff;
+    text-align: center;
+    transition: top .5s ease-out;
+}
 
+.dangerError{
+    color: red;
+    font-size: 12px;
+    font-weight: regular;
+}
+.btn:disabled{
+    pointer-events: none;
+    background: rgb(165, 165, 165);
+}

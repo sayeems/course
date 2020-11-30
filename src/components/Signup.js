@@ -16,6 +16,7 @@ function Signup() {
             setPageTransition(false)
         }
     }, [])
+
     //refs
     const emailRef = useRef()
     const passwordRef = useRef()
@@ -23,8 +24,8 @@ function Signup() {
     //call context
     const { signup } = useAuth()
     //states
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState()
     const history = useHistory()
 
     async function handleSubmit(e) {
@@ -58,7 +59,6 @@ function Signup() {
             </div>
             <div className="formContainer">
                 <div className="signinSignup">
-                    {error && <div className="errorBlock textCenter">{error}</div>}
                     <form className="form signupForm formVertical" onSubmit={handleSubmit}>
                         <h2 className="title">Sign Up</h2>
                         <div className="inputField">
@@ -73,7 +73,8 @@ function Signup() {
                             <FontAwesomeIcon icon={faLock} />
                             <input type="password" required ref={confirmRef} placeholder="Confirm Password" />
                         </div>
-                        <button disabled={loading} className="btn solid" type="submit">Sign Up</button>
+                        {error && <div className="textCenter dangerError">{error}</div>}
+                        <button disabled={loading} className="btn solid" type="submit">{loading ? 'processing...' : 'sign up'}</button>
                         <p className="social-text">Sign Up is easy with social media</p>
                         <div className="socialMediaIcons">
                             <a className="socialIcon" href="#">

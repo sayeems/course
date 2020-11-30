@@ -55,7 +55,6 @@ function Signin() {
             </div>
             <div className="formContainer">
                 <div className="signinSignup">
-                    {error && <div className="errorBlock textCenter">{error}</div>}
                     <form className="authForm" onSubmit={handleSubmit}>
                         <img className="formUser" src={user} alt="user" />
                         <h2 className="title">Sign In</h2>
@@ -67,7 +66,8 @@ function Signin() {
                             <FontAwesomeIcon icon={faLock} />
                             <input type="password" id="password" required ref={passwordRef} placeholder="Password" />
                         </div>
-                        <button disabled={loading} className="btn solid" type="submit">Sign In</button>
+                        {error && <div className="textCenter dangerError">{error}</div>}
+                        <button disabled={loading} className="btn solid" type="submit">{loading ? 'Signing in...' : 'Sign in'}</button>
                         <p className="social-text">Sign in with social media accounts</p>
                         <div className="socialMediaIcons">
                             <a className="socialIcon" href="#">
