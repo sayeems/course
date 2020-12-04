@@ -36,7 +36,7 @@ function Signin() {
             history.push('/')
         }
         catch {
-            setError('Failed to Log in')
+            setError('username & password did not match')
         }
         setLoading(false)
 

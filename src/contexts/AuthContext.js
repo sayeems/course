@@ -24,6 +24,10 @@ export function AuthProvider({ children }) {
         return auth.signOut()
     }
 
+    // function getData(path) {
+    //     return 'getting menu data'
+    // }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
