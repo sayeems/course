@@ -55,6 +55,19 @@
     height: 100%;
     animation: loading 2.5s infinite;
 }
+
+.content-shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    height: 3px;
+    background: rgba(249,168,36,.5);
+    box-shadow: 0 0 30px 30px rgba(255,255,255,0.2);
+    border-radius: 5px;
+    animation: shaishai 2s linear infinite;
+}
+
 .skeleton-menu-wrapper{
     margin: 10px 0px;
     height: 50px;
@@ -71,6 +84,7 @@
     box-shadow: 0 0 30px 30px rgba(255,255,255,0.2);
     transform: skewX(-20deg);
 }
+
 @keyframes loading{
     0%{
         transform: translateX(-150%);
@@ -80,5 +94,16 @@
     }
     100%{
         transform: translateX(150%);
+    }
+}
+
+@keyframes shaishai{
+    0%{
+        left: -120%;
+        top: 0%;
+    }
+    100%{
+        left: 120%;
+        top: 0%;
     }
 }

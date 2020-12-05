@@ -2,6 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 function SubItem({ data }) {
+    data = (data).sort(function (a, b) {
+        return a.submenu_order - b.submenu_order
+    })
     return (
         <div className="menuitems">
             {

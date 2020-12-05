@@ -7,6 +7,7 @@
         "sidebar maincontent";
 }
 .leftBar{
+    position: relative;
     background: #1d262d;
     grid-area: sidebar;
     height: 100vh;
@@ -31,7 +32,10 @@
 }
 .nowShowing svg{
     font-size: 45px;
-    color: rgb(194, 116, 116);
+    color: #f9a824;
+}
+.nowShowing h2{
+    padding-left: 5px;
 }
 .searchBar{
     background-color: #f0f0f0;
@@ -86,7 +90,10 @@
     background: #f0f0f0;
     grid-area: maincontent;
     height: calc(100vh - 60px);
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
 }
 .logoContainer{
     height: 60px;
@@ -148,7 +155,7 @@
     cursor: pointer;
 }
 .numberOfContents{
-    background: #f9a824;
+    background: #5dc3b1;
     padding: 2px 1px;
     border-radius: 5px;
     text-align: center;
@@ -184,4 +191,21 @@
 .menuitems a.active {
     background: #c0872c;
     transition: background .2s ease-in;
+}
+.followSocial{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background: #222d33;
+    overflow: hidden;
+}
+.header-bottom-shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(0,0,0,0.05);
+    overflow: hidden;
 }

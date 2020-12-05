@@ -7,10 +7,9 @@ import user from '../images/user.svg'
 import logo from '../images/logo.png'
 import MainItem from './MainItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faUser, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faFacebookF, faGoogle, faTwitter, faGithub, faHtml5, faCss3 } from '@fortawesome/free-brands-svg-icons'
+import { faSearch, faUser, faCog, faSignOutAlt, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import SkeletonMenu from '../skeleton/SkeletonMenu'
-import TestChield from './TestChield'
+import Content from './Content'
 import Welcome from './Welcome'
 
 
@@ -18,6 +17,7 @@ function Dashboard() {
     const [error, setError] = useState()
     const [menuData, setMenuData] = useState([])
     const [loading, setLoading] = useState()
+    const [headerTitle, setheaderTitle] = useState({})
     const [dropdown, setDropdown] = useState(false)
     const { currentUser, logout } = useAuth()
     const history = useHistory()
@@ -41,6 +41,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchMenuData = async () => {
             setLoading(true)
+            setheaderTitle({ title: 'Welcome', headerIcon: 'jira' })
             const res = await axios.get('http://localhost/courseContent/wp-json/sayeem/courses/contentList')
             const sortedData = (res.data).sort(function (a, b) {
                 return a.menu_order - b.menu_order
@@ -59,6 +60,10 @@ function Dashboard() {
         setMenuData(menuData.map((menu, i) => {
             if (i === index) {
                 menu.open = !menu.open
+                setheaderTitle({
+                    headerIcon: menu.icon,
+                    title: menu.name
+                })
             }
             else {
                 menu.open = false
@@ -91,7 +96,7 @@ function Dashboard() {
                             <MainItem
                                 key={menu.id}
                                 name={menu.name}
-                                iconName={menu.icon_name}
+                                icon={menu.icon}
                                 contentCount={menu.total_contents}
                                 id={menu.id}
                                 index={i}
@@ -103,12 +108,35 @@ function Dashboard() {
                         )
                     })}
                     {loading && [1, 2, 3, 4, 5].map(sk => <SkeletonMenu key={sk} />)}
+                    <div className="followSocial">
+                        <div className="socialMediaIcons">
+                            <a className="socialIcon" href="https://www.facebook.com/sayeems" target="_blank">
+                                <FontAwesomeIcon icon={['fab', 'facebook-f']} />
+                            </a>
+                            <a className="socialIcon" href="https://www.instagram.com/iamsayeem/" target="_blank">
+                                <FontAwesomeIcon icon={['fab', 'instagram']} />
+                            </a>
+                            <a className="socialIcon" href="https://github.com/sayeems" target="_blank">
+                                <FontAwesomeIcon icon={['fab', 'github']} />
+                            </a>
+                            <a className="socialIcon" href="https://www.linkedin.com/in/sayeems/" target="_blank">
+                                <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
+                            </a>
+                            <a className="socialIcon" href="http://sayeem.com/#about-me" target="_blank">
+                                <FontAwesomeIcon icon={faGlobe} />
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="headerContainer">
                 <div className="nowShowing">
-                    <FontAwesomeIcon icon={faHtml5} />
-                    <h4>HTML5</h4>
+                    {!loading &&
+                        <>
+                            <FontAwesomeIcon icon={['fab', `${headerTitle.headerIcon || 'jira'}`]} />
+                            <h2>{headerTitle.title}</h2>
+                        </>
+                    }
                 </div>
                 <div className="searchBar">
                     <FontAwesomeIcon icon={faSearch} />
@@ -137,9 +165,10 @@ function Dashboard() {
                 </div>
             </div>
             <div className="contentContainer">
+                <div className="header-bottom-shadow"></div>
                 <Switch>
                     <Route exact path="/" component={Welcome} />
-                    <Route path="/:id" component={TestChield} />
+                    <Route exact path="/:id" component={Content} />
                 </Switch>
             </div>
         </div>
