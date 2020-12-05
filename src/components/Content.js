@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import axios from '../axios'
 import ContentShimmer from '../skeleton/ContentShimmer';
 
 function Content({ match }) {
@@ -10,7 +10,9 @@ function Content({ match }) {
     useEffect(() => {
         const fetchContent = async () => {
             setLoading(true)
-            const res = await axios.get(`http://localhost/courseContent/wp-json/sayeem/courses/contentList/${match.params.id}`)
+            // console.log('loading content...')
+            // console.log(match.params.id)
+            const res = await axios.get(`/contentList/${match.params.id}`)
             setContent(res.data)
             // setTimeout(() => {
             //     setLoading(false)

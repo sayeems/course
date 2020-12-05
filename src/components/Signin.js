@@ -46,7 +46,7 @@ function Signin() {
             <div className="pannelContainer">
                 <div className="leftPannel">
                     <div className="leftContent">
-                        <h3>Dont have an account?</h3>
+                        <h3>Don't have an account?</h3>
                         <p>You can create one in no time. So what are you waiting for? click the button below and get your account, it's free!</p>
                         <Link className="btn transparent" to="/signup">Sign Up</Link>
                     </div>

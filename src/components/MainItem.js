@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import SubItem from './SubItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FaHtml5, FaCss3 } from 'react-icons/fa';
 // import { v4 as uuidv4 } from 'uuid';
 
 

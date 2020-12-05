@@ -192,10 +192,10 @@
     background: #c0872c;
     transition: background .2s ease-in;
 }
-.followSocial{
-    position: absolute;
+.followSocial {
+    position: fixed;
     bottom: 0;
-    width: 100%;
+    width: 250px;
     height: 45px;
     background: #222d33;
     overflow: hidden;
@@ -208,4 +208,11 @@
     height: 3px;
     background: rgba(0,0,0,0.05);
     overflow: hidden;
+}
+.theContent .table{
+    width: 100%;
+    border: 1px solid #000;
+}
+.theContent .table td {
+    border: 1px solid #000;
 }

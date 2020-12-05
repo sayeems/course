@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect, Children } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useHistory, Switch, Route } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../axios'
 import '../css/Dashboard.css'
 import user from '../images/user.svg'
 import logo from '../images/logo.png'
@@ -11,6 +11,7 @@ import { faSearch, faUser, faCog, faSignOutAlt, faGlobe } from '@fortawesome/fre
 import SkeletonMenu from '../skeleton/SkeletonMenu'
 import Content from './Content'
 import Welcome from './Welcome'
+import NotFound from './NotFound'
 
 
 function Dashboard() {
@@ -41,8 +42,9 @@ function Dashboard() {
     useEffect(() => {
         const fetchMenuData = async () => {
             setLoading(true)
+            // console.log('loading menu...')
             setheaderTitle({ title: 'Welcome', headerIcon: 'jira' })
-            const res = await axios.get('http://localhost/courseContent/wp-json/sayeem/courses/contentList')
+            const res = await axios.get('contentList')
             const sortedData = (res.data).sort(function (a, b) {
                 return a.menu_order - b.menu_order
             })
@@ -56,6 +58,7 @@ function Dashboard() {
 
     }, []);
 
+    //selecting clicked item
     const toggleMenu = index => {
         setMenuData(menuData.map((menu, i) => {
             if (i === index) {
@@ -110,19 +113,19 @@ function Dashboard() {
                     {loading && [1, 2, 3, 4, 5].map(sk => <SkeletonMenu key={sk} />)}
                     <div className="followSocial">
                         <div className="socialMediaIcons">
-                            <a className="socialIcon" href="https://www.facebook.com/sayeems" target="_blank">
+                            <a rel="noopener noreferrer" className="socialIcon" href="https://www.facebook.com/sayeems" target="_blank">
                                 <FontAwesomeIcon icon={['fab', 'facebook-f']} />
                             </a>
-                            <a className="socialIcon" href="https://www.instagram.com/iamsayeem/" target="_blank">
+                            <a rel="noopener noreferrer" className="socialIcon" href="https://www.instagram.com/iamsayeem/" target="_blank">
                                 <FontAwesomeIcon icon={['fab', 'instagram']} />
                             </a>
-                            <a className="socialIcon" href="https://github.com/sayeems" target="_blank">
+                            <a rel="noopener noreferrer" className="socialIcon" href="https://github.com/sayeems" target="_blank">
                                 <FontAwesomeIcon icon={['fab', 'github']} />
                             </a>
-                            <a className="socialIcon" href="https://www.linkedin.com/in/sayeems/" target="_blank">
+                            <a rel="noopener noreferrer" className="socialIcon" href="https://www.linkedin.com/in/sayeems/" target="_blank">
                                 <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
                             </a>
-                            <a className="socialIcon" href="http://sayeem.com/#about-me" target="_blank">
+                            <a rel="noopener noreferrer" className="socialIcon" href="http://sayeem.com/#about-me" target="_blank">
                                 <FontAwesomeIcon icon={faGlobe} />
                             </a>
                         </div>
@@ -169,6 +172,7 @@ function Dashboard() {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route exact path="/:id" component={Content} />
+                    <Route path="**" component={NotFound} />
                 </Switch>
             </div>
         </div>
